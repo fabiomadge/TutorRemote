@@ -1,0 +1,3 @@
+[submodule "MacClient/Starscream"]
+	path = MacClient/Starscream
+	url = https://github.com/daltoniam/Starscream

@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E59B19091BDA31BA006653C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59B19081BDA31BA006653C4 /* AppDelegate.swift */; };
+		E59B190B1BDA31BA006653C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59B190A1BDA31BA006653C4 /* ViewController.swift */; };
+		E59B190D1BDA31BA006653C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E59B190C1BDA31BA006653C4 /* Assets.xcassets */; };
+		E59B19101BDA31BA006653C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E59B190E1BDA31BA006653C4 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E552B1791BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B3E79E619D48B7F006071F7;
+			remoteInfo = Starscream;
+		};
+		E552B17B1BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B3E79F119D48B7F006071F7;
+			remoteInfo = StarscreamTests;
+		};
+		E552B17D1BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9C3E35F19E48FF1009FC285;
+			remoteInfo = StarscreamOSX;
+		};
+		E552B17F1BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9C3E36919E48FF1009FC285;
+			remoteInfo = StarscreamOSXTests;
+		};
+		E552B1811BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 091277971BD673A70003036D;
+			remoteInfo = StarscreamTv;
+		};
+		E552B1831BDBAF1A00753039 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 091277A01BD673A70003036D;
+			remoteInfo = StarscreamTvTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E59B19051BDA31BA006653C4 /* TutorRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E59B19081BDA31BA006653C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E59B190A1BDA31BA006653C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E59B190C1BDA31BA006653C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E59B190F1BDA31BA006653C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E59B19111BDA31BA006653C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Starscream.xcodeproj; path = Starscream/Starscream.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E59B19021BDA31BA006653C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E552B1711BDBAF1A00753039 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E552B17A1BDBAF1A00753039 /* Starscream.framework */,
+				E552B17C1BDBAF1A00753039 /* StarscreamTests.xctest */,
+				E552B17E1BDBAF1A00753039 /* Starscream.framework */,
+				E552B1801BDBAF1A00753039 /* StarscreamOSXTests.xctest */,
+				E552B1821BDBAF1A00753039 /* StarscreamTv.framework */,
+				E552B1841BDBAF1A00753039 /* StarscreamTvTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E59B18FC1BDA31BA006653C4 = {
+			isa = PBXGroup;
+			children = (
+				E59B19071BDA31BA006653C4 /* TutorRemote */,
+				E59B19061BDA31BA006653C4 /* Products */,
+				E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		E59B19061BDA31BA006653C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E59B19051BDA31BA006653C4 /* TutorRemote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E59B19071BDA31BA006653C4 /* TutorRemote */ = {
+			isa = PBXGroup;
+			children = (
+				E59B19081BDA31BA006653C4 /* AppDelegate.swift */,
+				E59B190A1BDA31BA006653C4 /* ViewController.swift */,
+				E59B190C1BDA31BA006653C4 /* Assets.xcassets */,
+				E59B190E1BDA31BA006653C4 /* Main.storyboard */,
+				E59B19111BDA31BA006653C4 /* Info.plist */,
+			);
+			path = TutorRemote;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E59B19041BDA31BA006653C4 /* TutorRemote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E59B19141BDA31BA006653C4 /* Build configuration list for PBXNativeTarget "TutorRemote" */;
+			buildPhases = (
+				E59B19011BDA31BA006653C4 /* Sources */,
+				E59B19021BDA31BA006653C4 /* Frameworks */,
+				E59B19031BDA31BA006653C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorRemote;
+			productName = TutorRemote;
+			productReference = E59B19051BDA31BA006653C4 /* TutorRemote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E59B18FD1BDA31BA006653C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Madge.ME;
+				TargetAttributes = {
+					E59B19041BDA31BA006653C4 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = E59B19001BDA31BA006653C4 /* Build configuration list for PBXProject "TutorRemote" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E59B18FC1BDA31BA006653C4;
+			productRefGroup = E59B19061BDA31BA006653C4 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E552B1711BDBAF1A00753039 /* Products */;
+					ProjectRef = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E59B19041BDA31BA006653C4 /* TutorRemote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E552B17A1BDBAF1A00753039 /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = E552B1791BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E552B17C1BDBAF1A00753039 /* StarscreamTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StarscreamTests.xctest;
+			remoteRef = E552B17B1BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E552B17E1BDBAF1A00753039 /* Starscream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Starscream.framework;
+			remoteRef = E552B17D1BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E552B1801BDBAF1A00753039 /* StarscreamOSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StarscreamOSXTests.xctest;
+			remoteRef = E552B17F1BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E552B1821BDBAF1A00753039 /* StarscreamTv.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = StarscreamTv.framework;
+			remoteRef = E552B1811BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E552B1841BDBAF1A00753039 /* StarscreamTvTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StarscreamTvTests.xctest;
+			remoteRef = E552B1831BDBAF1A00753039 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E59B19031BDA31BA006653C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E59B190D1BDA31BA006653C4 /* Assets.xcassets in Resources */,
+				E59B19101BDA31BA006653C4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E59B19011BDA31BA006653C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E59B190B1BDA31BA006653C4 /* ViewController.swift in Sources */,
+				E59B19091BDA31BA006653C4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E59B190E1BDA31BA006653C4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E59B190F1BDA31BA006653C4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E59B19121BDA31BA006653C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E59B19131BDA31BA006653C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E59B19151BDA31BA006653C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TutorRemote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.madge.TutorRemote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E59B19161BDA31BA006653C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TutorRemote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.madge.TutorRemote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E59B19001BDA31BA006653C4 /* Build configuration list for PBXProject "TutorRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E59B19121BDA31BA006653C4 /* Debug */,
+				E59B19131BDA31BA006653C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E59B19141BDA31BA006653C4 /* Build configuration list for PBXNativeTarget "TutorRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E59B19151BDA31BA006653C4 /* Debug */,
+				E59B19161BDA31BA006653C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E59B18FD1BDA31BA006653C4 /* Project object */;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TutorRemote</title>
+  </head>
+  <body onkeydown="sendKey(event)" onkeyup="sendKeyUp(event)" onload="setUp()" onunload="close()" >
+    <h1>TutorRemote</h1>
+    <p>Please just start typing.</p>
+    <p>Your Token is: <span id="tokenField">undefined</span></p>
+    <input type="text" value="Get the keyboard." style="width: 100%; box-sizing: border-box"></input>
+    <h3>Send Text</h3>
+    <textarea id="textinput" rows="4" style="width: 100%; box-sizing: border-box"></textarea>
+    <button type="button" style="display: block; margin: 0 auto" onclick="sendText()">Send!</button>
+  </body>
+  <script type="text/javascript">
+    function sendKey(event){
+      if(event.target.id != "textinput") socket.send("char: " + event.keyIdentifier);
+    }
+    function sendKeyUp(event){
+      if(event.target.id != "textinput") socket.send("CHAR: " + event.keyIdentifier);
+    }
+    function setUp(){
+      socket = new WebSocket("ws://echo.websocket.org", "tutorremote");
+      socket.onopen = function (event) {
+        socket.send("INPUTINIT");
+        socket.send("TOKEN: 123321");
+      };
+      socket.onmessage = function (event) {
+        var ctrl = event.data.split(": ")
+        switch(ctrl[0]){
+          case "TOKEN": updateToken(ctrl[1]); break;
+          default: break;
+        }
+        console.log(event.data);
+      };
+    }
+    function close(){
+      socket.close();
+      socket.send("BYE");
+      console.log("end");
+    }
+    function updateToken(token){
+      document.getElementById("tokenField").innerText = token;
+    }
+    function sendText(){
+      socket.send("TEXT: " + document.getElementById("textinput").value);
+      document.getElementById("textinput").value = "";
+    }
+  </script>
+</html>
