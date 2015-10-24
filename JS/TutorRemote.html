@@ -21,10 +21,9 @@
       if(event.target.id != "textinput") socket.send("CHAR: " + event.keyIdentifier);
     }
     function setUp(){
-      socket = new WebSocket("ws://echo.websocket.org", "tutorremote");
+      socket = new WebSocket("ws://localhost:9160/", "tutorremote");
       socket.onopen = function (event) {
         socket.send("INPUTINIT");
-        socket.send("TOKEN: 123321");
       };
       socket.onmessage = function (event) {
         var ctrl = event.data.split(": ")
