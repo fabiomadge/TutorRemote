@@ -11,6 +11,8 @@
 		E59B190B1BDA31BA006653C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59B190A1BDA31BA006653C4 /* ViewController.swift */; };
 		E59B190D1BDA31BA006653C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E59B190C1BDA31BA006653C4 /* Assets.xcassets */; };
 		E59B19101BDA31BA006653C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E59B190E1BDA31BA006653C4 /* Main.storyboard */; };
+		E5EE9DB81BDC1AC600AEF05C /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E552B17E1BDBAF1A00753039 /* Starscream.framework */; };
+		E5EE9DB91BDC1AC600AEF05C /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E552B17E1BDBAF1A00753039 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +58,28 @@
 			remoteGlobalIDString = 091277A01BD673A70003036D;
 			remoteInfo = StarscreamTvTests;
 		};
+		E5EE9DBA1BDC1AC600AEF05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E59B192D1BDA5689006653C4 /* Starscream.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D9C3E35E19E48FF1009FC285;
+			remoteInfo = StarscreamOSX;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E5EE9DBC1BDC1AC600AEF05C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5EE9DB91BDC1AC600AEF05C /* Starscream.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E59B19051BDA31BA006653C4 /* TutorRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5EE9DB81BDC1AC600AEF05C /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,10 +155,12 @@
 				E59B19011BDA31BA006653C4 /* Sources */,
 				E59B19021BDA31BA006653C4 /* Frameworks */,
 				E59B19031BDA31BA006653C4 /* Resources */,
+				E5EE9DBC1BDC1AC600AEF05C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5EE9DBB1BDC1AC600AEF05C /* PBXTargetDependency */,
 			);
 			name = TutorRemote;
 			productName = TutorRemote;
@@ -152,6 +178,7 @@
 				TargetAttributes = {
 					E59B19041BDA31BA006653C4 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 28SA64SXJM;
 					};
 				};
 			};
@@ -247,6 +274,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5EE9DBB1BDC1AC600AEF05C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StarscreamOSX;
+			targetProxy = E5EE9DBA1BDC1AC600AEF05C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E59B190E1BDA31BA006653C4 /* Main.storyboard */ = {
@@ -344,11 +379,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TutorRemote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.madge.TutorRemote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -356,11 +395,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TutorRemote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.madge.TutorRemote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

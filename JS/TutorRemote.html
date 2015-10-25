@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <title>TutorRemote</title>
   </head>
   <body onkeydown="sendKey(event)" onkeyup="sendKeyUp(event)" onload="setUp()" onunload="close()" >
@@ -12,16 +13,19 @@
     <h3>Send Text</h3>
     <textarea id="textinput" rows="4" style="width: 100%; box-sizing: border-box"></textarea>
     <button type="button" style="display: block; margin: 0 auto" onclick="sendText()">Send!</button>
+    <h3>Input Source</h3>
+    <input type="radio" name="source" value="ansi" checked> Correct<br>
+    <input type="radio" name="source" value="german"> German<br>
   </body>
   <script type="text/javascript">
     function sendKey(event){
-      if(event.target.id != "textinput") socket.send("char: " + event.keyIdentifier);
+      if(event.target.id != "textinput") socket.send("char: " + getKeyIdentifier(event));
     }
     function sendKeyUp(event){
-      if(event.target.id != "textinput") socket.send("CHAR: " + event.keyIdentifier);
+      if(event.target.id != "textinput") socket.send("CHAR: " + getKeyIdentifier(event));
     }
     function setUp(){
-      socket = new WebSocket("ws://localhost:9160/", "tutorremote");
+      socket = new WebSocket("ws://tutorremote.madge.me:9160/", "tutorremote");
       socket.onopen = function (event) {
         socket.send("INPUTINIT");
       };
@@ -46,5 +50,39 @@
       socket.send("TEXT: " + document.getElementById("textinput").value);
       document.getElementById("textinput").value = "";
     }
+    function getKeyIdentifier(event){
+      if(document.getElementsByName("source").item(0).checked){
+        if (event.shiftKey) {
+          switch (event.keyIdentifier) {
+            case "U+0021": return "U+0031"; break;
+            case "U+0040": return "U+0032"; break;
+            case "U+0023": return "U+0033"; break;
+            case "U+0024": return "U+0034"; break;
+            case "U+0025": return "U+0035"; break;
+            case "U+005E": return "U+0036"; break;
+            case "U+0026": return "U+0037"; break;
+            case "U+002A": return "U+0038"; break;
+            case "U+0028": return "U+0039"; break;
+            case "U+0029": return "U+0030"; break;
+            case "U+005F": return "U+002D"; break;
+            case "U+002B": return "U+003D"; break;
+            case "U+007B": return "U+005B"; break;
+            case "U+007D": return "U+005D"; break;
+            case "U+003A": return "U+003B"; break;
+            case "U+0022": return "U+0027"; break;
+            case "U+007C": return "U+005C"; break;
+            case "U+007E": return "U+0060"; break;
+            case "U+003C": return "U+002C"; break;
+            case "U+003E": return "U+002E"; break;
+            case "U+003F": return "U+002F"; break;
+            default: return event.keyIdentifier;
+          }
+        }
+        else { return event.keyIdentifier; }
+    }
+    else {
+      return event.keyIdentifier;
+    }
+  }
   </script>
 </html>

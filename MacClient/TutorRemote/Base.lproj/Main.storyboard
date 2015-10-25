@@ -653,8 +653,10 @@
                     <window key="window" title="TutorRemote" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="240" height="146"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="240" height="146"/>
+                        <value key="maxSize" type="size" width="240" height="146"/>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -669,16 +671,31 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="TutorRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="116"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="146"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-Js-bYm">
-                                <rect key="frame" x="20" y="74" width="200" height="22"/>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNO-9l-1Ru">
+                                <rect key="frame" x="20" y="104" width="200" height="22"/>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="ws://playlist.madge.me:8080/" drawsBackground="YES" id="0UU-zF-K5x">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Token" drawsBackground="YES" id="1Ey-R9-Tdt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="updateFilter:" target="XfG-lQ-9wD" id="ksu-MD-z6s"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-Js-bYm">
+                                <rect key="frame" x="20" y="74" width="200" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" title="ws://tutorremote.madge.me:9160" placeholderString="" drawsBackground="YES" id="0UU-zF-K5x">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <action selector="weakConnect:" target="XfG-lQ-9wD" id="aY1-2R-YYp"/>
+                                    </connections>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xp5-Ah-yml">
@@ -691,7 +708,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KGo-Uq-nwR">
-                                <rect key="frame" x="71" y="38" width="100" height="32"/>
+                                <rect key="frame" x="70" y="38" width="100" height="32"/>
                                 <animations/>
                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1bw-Lf-f2m">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -707,12 +724,13 @@
                     <connections>
                         <outlet property="connectButton" destination="KGo-Uq-nwR" id="FfY-j2-zQA"/>
                         <outlet property="statusField" destination="Xp5-Ah-yml" id="X0I-CF-At7"/>
+                        <outlet property="token" destination="dNO-9l-1Ru" id="dBv-XR-4jC"/>
                         <outlet property="urlField" destination="TwG-Js-bYm" id="gO4-Z4-V9Z"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="589"/>
+            <point key="canvasLocation" x="75" y="604"/>
         </scene>
     </scenes>
 </document>

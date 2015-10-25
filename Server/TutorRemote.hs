@@ -1,4 +1,4 @@
-module TutorRemote where
+module Main where
 
 import Control.Exception (finally)
 import Control.Monad (forM_, forever, when, liftM)
@@ -6,6 +6,7 @@ import Control.Concurrent (MVar, newMVar, modifyMVar_, modifyMVar, readMVar)
 import System.Random
 import Data.Either
 import Data.List
+import Data.Maybe
 import qualified Data.Text as T
 
 import qualified Network.WebSockets as WS
@@ -19,9 +20,6 @@ type ServerState = ([Client], Maybe Token)
 
 newServerState :: ServerState
 newServerState = ([], Nothing)
-
-addClient :: Client -> ServerState -> ServerState
-addClient client (cs, filtr) = (client:cs, filtr)
 
 removeClient :: Client -> ServerState -> ServerState
 removeClient (tkn, _) (cs, filtr) = (filter ((/= tkn) . fst) cs, filtr)
@@ -47,9 +45,12 @@ application state pending = do
       flip finally (disconnect client) $ do
           modifyMVar_ state (\(cs, filtr) -> return (client:cs, filtr) )
           WS.sendTextData conn (T.pack ("TOKEN: " ++ newToken))
+          putStrLn ((show.fst) client ++ " connected")
+          (_, filtr) <- readMVar state
+          when ((isRight.fst) client) (WS.sendTextData conn (T.pack ("FLUP: " ++ fromMaybe "" filtr)))
           relay conn state client
            where
-             disconnect client = modifyMVar state (\s -> let s' = removeClient client s in return (s', s'))
+             disconnect client = modifyMVar state (\s -> let s' = removeClient client s in return (s', s')) >> putStrLn ((show.fst) client ++ " disconnected")
              getNewToken state right = do
                (cs, filtr) <- readMVar state
                newToken <- liftM (randomRs ('A','Z')) getStdGen
@@ -65,11 +66,9 @@ relay conn state (tkn, _) = forever $ do
     case tkn of
       (Left tkn) -> do
         (cls, filtr) <- readMVar state
-        case filtr of
-          (Just tkn) -> WS.sendTextData (snd (head (filter ((==)(Left tkn).fst) cls))) msg
-          Nothing -> sendToReceivers msg (cls, filtr)
-      (Right tkn) -> when (T.pack "FILTERUPDATE: " `T.isPrefixOf` msg) ( do
-          let newFltr = T.drop 14 msg
+        when (maybe True (tkn ==) filtr) (sendToReceivers msg (cls, filtr))
+      (Right tkn) -> when (T.pack "FLUP: " `T.isPrefixOf` msg) ( do
+          let newFltr = T.drop 6 msg
           modifyMVar_ state (\(cs, filtr) -> return (cs, if T.length newFltr > 0 then (Just. T.unpack) newFltr else Nothing))
           (cls, filtr) <- readMVar state
           sendToReceivers msg (filter ((/=)(Right tkn).fst) cls, filtr)

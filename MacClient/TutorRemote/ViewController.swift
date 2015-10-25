@@ -132,7 +132,7 @@ enum Independent: CGKeyCode {
 
 
 class ViewController: NSViewController, WebSocketDelegate {
-    var socket = WebSocket(url: NSURL(string: "ws://playlist.madge.me:8080/")!, protocols: ["tutorremote"])
+    var socket = WebSocket(url: NSURL(string: "ws://tutorremote.madge.me:9160")!, protocols: ["tutorremote"])
     var shiftState = false
     var ctrlState = false
     var altState = false
@@ -149,6 +149,17 @@ class ViewController: NSViewController, WebSocketDelegate {
     override var representedObject: AnyObject? {
         didSet {
 //         Update the view, if already loaded.
+        }
+    }
+
+    @IBOutlet weak var token: NSTextField!
+    @IBAction func updateFilter(sender: AnyObject) {
+        if self.socket.isConnected { self.socket.writeString("FLUP: " + token.stringValue) }
+    }
+
+    @IBAction func weakConnect(sender: AnyObject) {
+        if !self.socket.isConnected {
+            connect(sender)
         }
     }
 
@@ -177,6 +188,7 @@ class ViewController: NSViewController, WebSocketDelegate {
         print("websocket is connected")
         self.connectButton.title = "Disconnect"
         statusField.stringValue = "Connected"
+        self.socket.writeString("OUTPUTINIT")
     }
     @IBOutlet weak var connectButton: NSButton!
     
@@ -194,27 +206,28 @@ class ViewController: NSViewController, WebSocketDelegate {
         let payload = text.substringFromIndex(text.startIndex.advancedBy(6))
         //keyDown
         if text.hasPrefix("char: "){
-            switch payload{
-                case "Shift": shiftState = true
-                case "Control": ctrlState = true
-                case "Alt": altState = true
-                case "Meta": cmdState = true
-                default: break
-            }
-        }
-        //keyup
-        else if text.hasPrefix("CHAR: "){
             if let ansiKey = wireToUSANSI[payload]{
+                print(payload + " " + shiftState.description + " " + ctrlState.description + " " + altState.description + " " + cmdState.description)
                 sendKeyToSystem(ansiKey.rawValue, shift: shiftState, ctrl: ctrlState, alt: altState, cmd: cmdState)
             }
             else if let indieKey = wireToIndependent[payload]{
                 switch payload{
-                    case "Shift": shiftState = false
-                    case "Control": ctrlState = false
-                    case "Alt": altState = false
-                    case "Meta": cmdState = false
-                    default: sendKeyToSystem(indieKey.rawValue, shift: shiftState, ctrl: ctrlState, alt: altState, cmd: cmdState)
+                case "Shift": shiftState = true
+                case "Control": ctrlState = true
+                case "Alt": altState = true
+                case "Meta": cmdState = true
+                default: sendKeyToSystem(indieKey.rawValue, shift: shiftState, ctrl: ctrlState, alt: altState, cmd: cmdState)
                 }
+            }
+        }
+        //keyup
+        else if text.hasPrefix("CHAR: "){
+                switch payload{
+                case "Shift": shiftState = false
+                case "Control": ctrlState = false
+                case "Alt": altState = false
+                case "Meta": cmdState = false
+                default: break
             }
         }
         else if text.hasPrefix("TEXT: "){
@@ -223,7 +236,17 @@ class ViewController: NSViewController, WebSocketDelegate {
             board.setString(payload, forType: NSStringPboardType)
             
             //cmd+V
-            sendKeyToSystem(0x09, shift: false, ctrl: false, alt: false, cmd: true)
+            sendKeyToSystem(ANSI.V.rawValue, shift: false, ctrl: false, alt: false, cmd: true)
+        }
+        else if text.hasPrefix("FLUP: "){
+            if token.stringValue != payload {
+                token.stringValue = payload
+            }
+        }
+        else if text.hasPrefix("TOKEN: "){
+        }
+        else{
+            print("Did not recognise the following message: " + text)
         }
     }
 
