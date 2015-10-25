@@ -8,6 +8,7 @@ import Data.Either
 import Data.List
 import Data.Maybe
 import qualified Data.Text as T
+import qualified Data.ByteString.Char8 as C
 
 import qualified Network.WebSockets as WS
 
@@ -34,7 +35,7 @@ main = do
 
 application :: MVar ServerState -> WS.ServerApp
 application state pending = do
-    conn <- WS.acceptRequest pending
+    conn <- WS.acceptRequestWith pending (WS.AcceptRequest (Just (C.pack "tutorremote")))
     WS.forkPingThread conn 30
     msg <- WS.receiveData conn
     if msg /= T.pack "OUTPUTINIT" && msg /= T.pack "INPUTINIT"

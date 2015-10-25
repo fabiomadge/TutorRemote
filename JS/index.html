@@ -50,14 +50,14 @@
       console.log("end");
     }
     function updateToken(token){
-      document.getElementById("tokenField").innerText = token;
+      document.getElementById("tokenField").innerHTML = token;
     }
     function sendText(){
       socket.send("TEXT: " + document.getElementById("textinput").value);
       document.getElementById("textinput").value = "";
     }
     function getKeyIdentifier(event){
-      if(document.getElementsByName("source").item(0).checked){
+      if(keyboard == "ansi"){
         if (event.shiftKey) {
           switch (event.keyIdentifier) {
             case "U+0021": return "U+0031"; break;
@@ -86,7 +86,7 @@
         }
         else { return event.keyIdentifier; }
     }
-    if(document.getElementsByName("source").item(1).checked){
+    if(keyboard == "german"){
       if (event.shiftKey) {
         switch (event.keyIdentifier) {
           case "U+0021": return "U+0031"; break;
