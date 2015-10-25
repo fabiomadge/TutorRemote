@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>TutorRemote</title>
+  </head>
+  <body onkeydown="sendKey(event)" onkeyup="sendKeyUp(event)" onload="setUp()" onunload="close()" >
+    <h1>TutorRemote</h1>
+    <p>Please just start typing.</p>
+    <p>Your Token is: <span id="tokenField">undefined</span></p>
+    <input type="text" value="Get the keyboard." style="width: 100%; box-sizing: border-box"></input>
+    <h3>Send Text</h3>
+    <textarea id="textinput" rows="4" style="width: 100%; box-sizing: border-box"></textarea>
+    <button type="button" style="display: block; margin: 0 auto" onclick="sendText()">Send!</button>
+    <h3>Input Source</h3>
+    <input type="radio" name="source" value="ansi" checked onchange="updateKeyboard(event)"> Correct<br>
+    <input type="radio" name="source" value="german" onchange="updateKeyboard(event)"> German<br>
+  </body>
+  <script type="text/javascript">
+    var keyboard = "ansi";
+
+    function sendKey(event){
+      if(event.target.id != "textinput") socket.send("char: " + getKeyIdentifier(event));
+    }
+    function sendKeyUp(event){
+      if(event.target.id != "textinput") socket.send("CHAR: " + getKeyIdentifier(event));
+    }
+    function setUp(){
+      if(getCookie("keyboard") != "") [].slice.call(document.getElementsByName("source")).filter(function(e){return e.value == getCookie("keyboard")})[0].click();
+      socket = new WebSocket("ws://tutorremote.madge.me:9160/", "tutorremote");
+      socket.onopen = function (event) {
+        socket.send("INPUTINIT");
+      };
+      socket.onmessage = function (event) {
+        var ctrl = event.data.split(": ")
+        switch(ctrl[0]){
+          case "TOKN": updateToken(ctrl[1]); break;
+          default: break;
+        }
+        console.log(event.data);
+      };
+    }
+    function updateKeyboard(event){
+      keyboard = event.target.value;
+      setCookie("keyboard", keyboard, 365)
+    }
+    function close(){
+      socket.close();
+      console.log("end");
+    }
+    function updateToken(token){
+      document.getElementById("tokenField").innerText = token;
+    }
+    function sendText(){
+      socket.send("TEXT: " + document.getElementById("textinput").value);
+      document.getElementById("textinput").value = "";
+    }
+    function getKeyIdentifier(event){
+      if(document.getElementsByName("source").item(0).checked){
+        if (event.shiftKey) {
+          switch (event.keyIdentifier) {
+            case "U+0021": return "U+0031"; break;
+            case "U+0040": return "U+0032"; break;
+            case "U+0023": return "U+0033"; break;
+            case "U+0024": return "U+0034"; break;
+            case "U+0025": return "U+0035"; break;
+            case "U+005E": return "U+0036"; break;
+            case "U+0026": return "U+0037"; break;
+            case "U+002A": return "U+0038"; break;
+            case "U+0028": return "U+0039"; break;
+            case "U+0029": return "U+0030"; break;
+            case "U+005F": return "U+002D"; break;
+            case "U+002B": return "U+003D"; break;
+            case "U+007B": return "U+005B"; break;
+            case "U+007D": return "U+005D"; break;
+            case "U+003A": return "U+003B"; break;
+            case "U+0022": return "U+0027"; break;
+            case "U+007C": return "U+005C"; break;
+            case "U+007E": return "U+0060"; break;
+            case "U+003C": return "U+002C"; break;
+            case "U+003E": return "U+002E"; break;
+            case "U+003F": return "U+002F"; break;
+            default: return event.keyIdentifier;
+          }
+        }
+        else { return event.keyIdentifier; }
+    }
+    if(document.getElementsByName("source").item(1).checked){
+      if (event.shiftKey) {
+        switch (event.keyIdentifier) {
+          case "U+0021": return "U+0031"; break;
+          case "U+0022": return "U+0032"; break;
+          case "U+00A7": return "U+0033"; break;
+          case "U+0024": return "U+0034"; break;
+          case "U+0025": return "U+0035"; break;
+          case "U+0026": return "U+0036"; break;
+          case "U+002F": return "U+0037"; break;
+          case "U+0028": return "U+0038"; break;
+          case "U+0029": return "U+0039"; break;
+          case "U+003D": return "U+0030"; break;
+          case "U+003F": return "U+002D"; break;
+          case "U+002B": return "U+003D"; break;
+          case "U+005A": return "U+0059"; break;
+          case "U+0059": return "U+005A"; break;
+          case "U+00DC": return "U+005B"; break;
+          case "U+002A": return "U+005D"; break;
+          case "U+00D6": return "U+003B"; break;
+          case "U+00C4": return "U+0027"; break;
+          case "U+0027": return "U+005C"; break;
+          case "U+003E": return "U+0060"; break;
+          case "U+003B": return "U+002C"; break;
+          case "U+003A": return "U+002E"; break;
+          case "U+005F": return "U+002F"; break;
+          case "Unidentified": switch (event.which) {
+            case 187: return "U+003D";
+            default: return event.keyIdentifier;
+          } break;
+          default: return event.keyIdentifier;
+        }
+      }
+      else{
+        switch (event.keyIdentifier) {
+          case "U+00DF": return "U+002D"; break;
+          case "U+005A": return "U+0059"; break;
+          case "U+0059": return "U+005A"; break;
+          case "U+003C": return "U+0060"; break;
+          case "U+002D": return "U+002F"; break;
+          case "U+00FC": return "U+005B"; break;
+          case "U+002B": return "U+005D"; break;
+          case "U+00F6": return "U+003B"; break;
+          case "U+00E4": return "U+0027"; break;
+          case "U+0023": return "U+005C"; break;
+          case "Unidentified": switch (event.which) {
+            case 187: return "U+003D";
+            default: return event.keyIdentifier;
+          } break;
+          default: return event.keyIdentifier;
+        }
+      }
+    }
+    else {
+      return event.keyIdentifier;
+    }
+  }
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+  }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+  }
+  </script>
+</html>

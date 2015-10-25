@@ -187,7 +187,7 @@ class ViewController: NSViewController, WebSocketDelegate {
     func websocketDidConnect(ws: WebSocket) {
         print("websocket is connected")
         self.connectButton.title = "Disconnect"
-        statusField.stringValue = "Connected"
+        statusField.stringValue = "Channel open"
         self.socket.writeString("OUTPUTINIT")
     }
     @IBOutlet weak var connectButton: NSButton!
@@ -243,7 +243,8 @@ class ViewController: NSViewController, WebSocketDelegate {
                 token.stringValue = payload
             }
         }
-        else if text.hasPrefix("TOKEN: "){
+        else if text.hasPrefix("TOKN: "){
+            statusField.stringValue = "Connected as " + payload
         }
         else{
             print("Did not recognise the following message: " + text)
@@ -255,7 +256,9 @@ class ViewController: NSViewController, WebSocketDelegate {
         print("Received data: \(data.length)")
     }
     
+    @IBOutlet weak var input: NSButton!
     func sendKeyToSystem(key: CGKeyCode, shift: Bool, ctrl: Bool, alt: Bool, cmd: Bool){
+        if (input.state != 1) { return }
         let src = CGEventSourceCreate(CGEventSourceStateID.CombinedSessionState)
 
         let event1 = CGEventCreateKeyboardEvent(src, key, true)

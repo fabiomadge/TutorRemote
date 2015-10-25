@@ -44,7 +44,7 @@ application state pending = do
       let client = ((if msg == T.pack "OUTPUTINIT" then Right else Left) newToken,conn)
       flip finally (disconnect client) $ do
           modifyMVar_ state (\(cs, filtr) -> return (client:cs, filtr) )
-          WS.sendTextData conn (T.pack ("TOKEN: " ++ newToken))
+          WS.sendTextData conn (T.pack ("TOKN: " ++ newToken))
           putStrLn ((show.fst) client ++ " connected")
           (_, filtr) <- readMVar state
           when ((isRight.fst) client) (WS.sendTextData conn (T.pack ("FLUP: " ++ fromMaybe "" filtr)))
