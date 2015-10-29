@@ -5,7 +5,7 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <title>TutorRemote</title>
   </head>
-  <body onkeydown="sendKey(event)" onkeyup="sendKeyUp(event)" onload="setUp()" onunload="close()" >
+  <body onkeydown="sendKey(event, true)" onkeyup="sendKey(event, false)" onload="setUp()" onunload="close()" >
     <h1>TutorRemote</h1>
     <p>Please just start typing.</p>
     <p>Your Token is: <span id="tokenField">undefined</span></p>
@@ -15,16 +15,36 @@
     <button type="button" style="display: block; margin: 0 auto" onclick="sendText()">Send!</button>
     <h3>Input Source</h3>
     <input type="radio" name="source" value="ansi" checked onchange="updateKeyboard(event)"> Correct<br>
-    <input type="radio" name="source" value="german" onchange="updateKeyboard(event)"> German<br>
+    <input type="radio" name="source" value="german" onchange="updateKeyboard(event)"> German<br><br>
+    <button type="button" onclick="sendReset()">Reset Modifier Keys</button>
   </body>
   <script type="text/javascript">
     var keyboard = "ansi";
 
-    function sendKey(event){
-      if(event.target.id != "textinput") socket.send("char: " + getKeyIdentifier(event));
-    }
-    function sendKeyUp(event){
-      if(event.target.id != "textinput") socket.send("CHAR: " + getKeyIdentifier(event));
+    function sendKey(event, down){
+      if(event.target.id != "textinput") {
+        if(event.keyIdentifier == undefined){
+          //try to work around firefox not having keyIdentifier
+          if(event.key.length == 1){
+            if(event.key == " ") event.keyIdentifier = "Space";
+            else{
+              var char = event.key.toUpperCase().charCodeAt(0).toString(16);
+              event.keyIdentifier = ("U+" + "0".repeat(4-char.length) + char).toUpperCase();
+            }
+          }
+          else{
+            switch(event.key){
+              case "Backspace": event.keyIdentifier = "U+0008"; break;
+              case "Delete": event.keyIdentifier = "U+007F"; break;
+              case "Escape": event.keyIdentifier = "U+001B"; break;
+              default: event.keyIdentifier = event.key.replace("Arrow",""); break;
+            }
+          }
+        }
+        //prevent browser interpretation of the keypresses in some cases
+        event.preventDefault();
+        socket.send((down ? "char: " : "CHAR: ") + getKeyIdentifier(event));
+      }
     }
     function setUp(){
       if(getCookie("keyboard") != "") [].slice.call(document.getElementsByName("source")).filter(function(e){return e.value == getCookie("keyboard")})[0].click();
@@ -55,6 +75,9 @@
     function sendText(){
       socket.send("TEXT: " + document.getElementById("textinput").value);
       document.getElementById("textinput").value = "";
+    }
+    function sendReset(){
+      socket.send("RESETMOD");
     }
     function getKeyIdentifier(event){
       if(keyboard == "ansi"){

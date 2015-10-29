@@ -200,6 +200,7 @@ class ViewController: NSViewController, WebSocketDelegate {
         }
         self.connectButton.title = "Connect";
         statusField.stringValue = "Not Connected"
+        resetModifiers()
     }
     
     func websocketDidReceiveMessage(ws: WebSocket, text: String) {
@@ -212,17 +213,17 @@ class ViewController: NSViewController, WebSocketDelegate {
             }
             else if let indieKey = wireToIndependent[payload]{
                 switch payload{
-                case "Shift": shiftState = true
-                case "Control": ctrlState = true
-                case "Alt": altState = true
-                case "Meta": cmdState = true
-                default: sendKeyToSystem(indieKey.rawValue, shift: shiftState, ctrl: ctrlState, alt: altState, cmd: cmdState)
+                    case "Shift": shiftState = true
+                    case "Control": ctrlState = true
+                    case "Alt": altState = true
+                    case "Meta": cmdState = true
+                    default: sendKeyToSystem(indieKey.rawValue, shift: shiftState, ctrl: ctrlState, alt: altState, cmd: cmdState)
                 }
             }
         }
         //keyup
         else if text.hasPrefix("CHAR: "){
-                switch payload{
+            switch payload{
                 case "Shift": shiftState = false
                 case "Control": ctrlState = false
                 case "Alt": altState = false
@@ -245,6 +246,10 @@ class ViewController: NSViewController, WebSocketDelegate {
         }
         else if text.hasPrefix("TOKN: "){
             statusField.stringValue = "Connected as " + payload
+        }
+        else if text.hasPrefix("RESETMOD"){
+            print("resetting")
+            resetModifiers()
         }
         else{
             print("Did not recognise the following message: " + text)
@@ -275,6 +280,13 @@ class ViewController: NSViewController, WebSocketDelegate {
         
         CGEventPost(CGEventTapLocation.CGAnnotatedSessionEventTap, event1)
         CGEventPost(CGEventTapLocation.CGAnnotatedSessionEventTap, event2)
+    }
+    
+    func resetModifiers(){
+        shiftState = false
+        ctrlState = false
+        altState = false
+        cmdState = false
     }
 }
 
