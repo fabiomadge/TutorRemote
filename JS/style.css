@@ -1,0 +1,71 @@
+h1 {
+  text-align: center;
+}
+
+div.floatEnd {
+  clear: both;
+}
+div#content {
+  margin: 2%;
+  margin-top: 2em;
+}
+
+div#conState, div#token {
+  box-sizing: border-box;
+  margin: 0 2%;
+  padding: .3em .6em;
+
+  text-align: center;
+  border: 1px solid #888;
+  border-radius: .3em;
+
+  -webkit-transition: border-color .2s;
+  transition: border-color .2s;
+}
+div#conState {
+  float: left;
+  width: 40%;
+}
+div#token {
+  float: right;
+  width: 40%;
+  background-color: #eee;
+}
+div#token #tokenField {
+  display: inline-block;
+  padding: 0 .5em;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+div#conState.connect {
+  background-color: #ffa;
+}
+div#conState.ready {
+  background-color: #afa;
+}
+div#conState.error {
+  background-color: #faa;
+}
+div#conState.closed {
+  background-color: #aaa;
+}
+div#conState.send {
+  border-color: #ff0;
+  -webkit-transition: border-color 0s;
+  transition: border-color 0s;
+}
+
+button#sendText {
+  display: block;
+  margin: 0 auto;
+  padding: .5em 2em;
+}
+textarea#textinput {
+  box-sizing: border-box;
+  width: 100%;
+}
+input#keyboardFetcher {
+  box-sizing: border-box;
+  width: 100%;
+}
