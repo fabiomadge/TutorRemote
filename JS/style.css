@@ -1,0 +1,137 @@
+h1, h3 {
+	text-align: center;
+}
+h3 {
+	margin-top: 2em;
+}
+
+div.floatEnd {
+	clear: both;
+}
+div#content {
+	margin: 2%;
+	margin-top: 3em;
+	text-align: center;
+}
+
+div#output, div#token, div#conState {
+	box-sizing: border-box;
+	margin: 0 2%;
+	padding: 1em .5em;
+	width: 30%;
+	
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #888;
+	border-radius: .3em;
+}
+div#output {
+	float: left;
+	background-color: #eee;
+}
+div#output #outputT {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 5em;
+	height: 2em;
+	padding: 0 .5em;
+	text-align: center;
+	font-size: inherit;
+}
+div#token {
+	float: right;
+	background-color: #eee;
+}
+div#token #tokenField {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: .5em .5em;
+	height: 2em;
+	text-align: center;
+	background-color: #fafafa;
+}
+div#conState {
+	margin-left: auto;
+	margin-right: auto;
+	
+	padding: 1.5em .6em;
+	line-height: 1em;
+	
+	cursor: pointer;
+	
+	-webkit-transition: border-color .2s;
+	transition: border-color .2s;
+}
+
+div#conState.connect {
+	background-color: #fda;
+}
+div#conState.searching {
+	background-color: #ffa;
+}
+div#conState.ready {
+	background-color: #dfa;
+}
+div#conState.active {
+	background-color: #afa;
+}
+div#conState.error {
+	background-color: #faa;
+}
+div#conState.closed {
+	background-color: #aaa;
+}
+
+div#conState.send {
+	border-color: #ff0;
+	-webkit-transition: border-color 0s;
+	transition: border-color 0s;
+}
+
+textarea#textinput {
+	box-sizing: border-box;
+	width: 100%;
+}
+input#keyboardFetcher {
+	box-sizing: border-box;
+	text-align: center;
+	width: 100%;
+}
+div#lowerC {
+	display: inline-block;
+	margin: 1em 0;
+}
+div#lowerC > div{
+	vertical-align: middle;
+	display: inline-block;
+}
+div#lowerC > button{
+	vertical-align: middle;
+	display: inline-block;
+}
+button#sendText {
+	display: block;
+	padding: .5em 2em;
+}
+
+div#cursor {
+}
+div#cursor button, button#bksp {
+	background-color: transparent;
+	border: none;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+div#cursor button:active, button#bksp:active {
+	color: #680;
+}
+div#cursor #up, div#cursor #down {
+	display: block;
+	width: 100%;
+	margin: -.2em 0 -.15em;
+}
+div#cursor #left, div#cursor #right {
+	display: inline-block;
+	padding: 0 0.5em;
+	margin: 0 0;
+}
