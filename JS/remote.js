@@ -1,6 +1,10 @@
+var server = "ws://_server_:9160/";
+
 var socket;
 var conState;
 var dest = "";
+
+var lastReq = 0;
 
 var sCharMap = {};
 sCharMap["8"] = "Bksp";
@@ -121,7 +125,7 @@ function setUp(){
 	conState = document.getElementById("conState");
 	var timeout = null;
 
-	socket = new WebSocket("ws://denkaktiv.de:9160/", "tutorremote");
+	socket = new WebSocket(server, "tutorremote");
 	socket.onopen = function (event) {
 		socket.send("INPUTINIT");
 		conState.className = "searching";
@@ -142,21 +146,26 @@ function setUp(){
 			case "TOKN": updateToken(ctrl[2]); break;
 			case "TICK":
 				window.clearTimeout(timeout);
+				addClass(document.getElementById('keyboardFetcher'), 'active');
 				timeout = window.setTimeout(function(){
 					conState.className = "ready";
 					conState.innerHTML = "Token OK!";
+					rmClass(document.getElementById('keyboardFetcher'), 'active');
 				}, 2000)
 				conState.className = "active";
 				conState.innerHTML = "Active! You can type now!";
+				rmClass(document.getElementById('outputT'), 'needed');
 				break;
 			case "DING":
 				conState.className = "ready";
 				conState.innerHTML = "Token OK";
+				rmClass(document.getElementById('outputT'), 'needed');
 				console.log(ctrl[2]);
 				break;
 			case "NOPE":
 				conState.className = "searching";
 				conState.innerHTML = "Connecting to Output Token";
+				addClass(document.getElementById('outputT'), 'needed');
 				console.log("NOPE: "+ctrl[2]);
 				break;
 			default: break;
@@ -178,8 +187,12 @@ function testToken(){
 	console.log("TEST");
 	conState.className = "searching";
 	conState.innerHTML = "Connecting to Output Token";
+	addClass(document.getElementById('outputT'), 'needed');
 }
 function requestActivation(){
+	var time = new Date().getTime();
+	if(time - lastReq < 5000) return;
+	lastReq = time;
 	send("SNMA: Senpai Notice Me Already!");
 	console.log("Senpai Notice Me Already!");
 	conState.innerHTML = "Requesting Activation...";
@@ -195,8 +208,17 @@ function sendReset(){
 }
 function send(msg){
 	socket.send(dest+": "+msg);
-	conState.className += " send";
-	window.setTimeout(function(){conState.className = conState.className.replace(/ send/g, '');}, 10);
+	addClass(conState, "send");
+	window.setTimeout(function(){rmClass(conState, 'send');}, 10);
 }
+
+function addClass(el, cl){
+	if(el.className.indexOf(cl) >= 0) return;
+	el.className += " "+cl;
+}
+function rmClass(el, cl){
+	el.className = el.className.replace(cl, '').trim();
+}
+
 window.onload = setUp;
 window.onunload = close;

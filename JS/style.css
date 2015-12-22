@@ -38,6 +38,9 @@ div#output #outputT {
 	text-align: center;
 	font-size: inherit;
 }
+div#output #outputT.needed {
+	background-color: #faa;
+}
 div#token {
 	float: right;
 	background-color: #eee;
@@ -96,6 +99,9 @@ input#keyboardFetcher {
 	box-sizing: border-box;
 	text-align: center;
 	width: 100%;
+}
+input#keyboardFetcher.active {
+	background-color: #efe;
 }
 div#lowerC {
 	display: inline-block;
